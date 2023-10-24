@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trang Đăng Nhập và Đăng Ký</title>
+</head>
+<body>
+    <h1>Đăng Nhập</h1>
+    <% if (typeof conflictError !== 'undefined') { %>
+        <p style="color: red;"><%= conflictError %></p>
+        <% }   %>
+    <form action="/login" method="post">
+        <label for="username">User Name:</label>
+        <input type="text" name="username" id="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        <br>
+        <input type="submit" value="Đăng Nhập">
+    </form>
+
+    <h1>Đăng Ký</h1>
+    <% if (typeof errorRegister !== 'undefined') { %>
+        <p style="color: red;"><%= errorRegister %></p>
+        <% }   %>
+    <form action="/register" method="post">
+        <label for="new_username">New User:</label>
+        <input type="text" name="new_username" id="new_username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        <br>
+        <label for="mail">Mail:</label>
+        <input type="email" name="mail" id="mail" required>
+        <br>
+        <input type="submit" value="Đăng Ký">
+    </form>
+
+</body>
+</html>
+
