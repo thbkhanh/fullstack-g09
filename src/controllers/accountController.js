@@ -20,14 +20,13 @@ let login = (req, res) => {
                     if (!err) {
                         //req.session.loggedin = true;
                         //req.session.user = user;
-                        return res.redirect('/'); // Điều hướng đến "/homePage
-                        
+                        return res.redirect('/'); // Điều hướng đến "/homePage   
                     } 
                     else {
                         // Mật khẩu không hợp lệ
                         
                         const conflictError= "Tài khoản hoặc mật khẩu không chính xác.";
-                        return res.render('account.ejs', {conflictError });
+                        res.render('account.ejs', {conflictError });
                         
                     }
                 })
