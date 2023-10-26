@@ -18,24 +18,22 @@ let createAccount =(ac, result) =>{
     bcrypt.hash(ac.password, 10, (err, pass)=> {
         if(err){
             result(err, null);
-            return;
         }
-        
         else{
             sql.query("INSERT INTO USERS  VALUES (?, ?, '002', NULL)", [ac.new_username, pass], (err, message) =>{
                 if(err){
                     result(err, null);
-                    return;
                 }
                 else{
                     result(null, "Đã thêm vào csdl");
                 }
-                result(null, null);
             });
         }
         return;
     });
 } 
+
+
 
 module.exports = {
     findUser: findUser,

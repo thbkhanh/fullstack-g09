@@ -1,6 +1,28 @@
 import bcrypt from "bcrypt"
 import account from "../models/user";
-import sql from "../models/db";
+import mailController from "./mailController"
+require ('dotenv').config();
+
+
+// middlewares kiểm tra người dùng đăng nhập hay chưa 
+let loggedin = (req, res, next) => {
+    if (req.session.loggedin) {
+        res.locals.user = req.session.user
+        next();
+    } else {
+        res.redirect('/login')
+    }
+}
+
+let isAuth = (req, res, next) => {
+    if (req.session.loggedin) {
+        res.locals.user = req.session.user
+        res.redirect('/home');
+    } else {
+        next();
+    }
+}
+
 
 let showLogin = (req, res)=>{
     return res.render('account.ejs');
@@ -40,34 +62,42 @@ let login = (req, res) => {
     }
 }
 
-let register = (req, res) =>{
-    const {new_username, password, mail} =req.body;
+let register = (req, res) => {
+    const { new_username, password, mail } = req.body;
     if (new_username && password && mail) {
-        account.findUser(new_username, (err, user) => {
+        account.findUser(new_username, (err, user) => { // kiểm tra user có tồn tại không 
             if (user) {
                 const errorRegister = 'Tài khoản đã tồn tại!';
-                return  res.render('account.ejs', {errorRegister});
+                return res.render('account.ejs', { errorRegister });
             } 
-            else {
-                const ac ={new_username, password, mail}
-                account.createAccount( ac, (err, message) =>{
-                    if(err){
+            if(!user) {
+                const ac = { new_username, password, mail };
+                account.createAccount(ac, (err, message) => {
+                    if (err) {
+                        // Xử lý lỗi ở đây
                         const errorRegister = 'Lỗi đăng ký';
-                        return res.render('account.ejs', {errorRegister}); 
-                    }
-                    else {
-                        const errorRegister = message;
-                        return res.render('account.ejs', {errorRegister});
+                        res.render('account.ejs', { errorRegister });
+                    } else {
+                        // Gửi email và sau đó chuyển hướng
+                        mailController.sendMail(ac.mail, "Verify Email", `<a href="${process.env.APP_URL}/verify?email=${ac.mail}&token=${ac.mail}"> Verify </a>`, (emailError) => {
+                            if (emailError) {
+                                // Xử lý lỗi gửi email ở đây
+                                const errorRegister = 'Lỗi gửi email xác minh';
+                                res.render('account.ejs', { errorRegister });
+                            } else {
+                                res.redirect('/login');
+                            }
+                        });
                     }
                 });
-            } 
+            }
         });
-    } 
-    else{
-        const errorRegister= 'Vui lòng điền đầy đủa thông tin';
-        return res.render('account.ejs', {errorRegister });
+    } else {
+        const errorRegister = 'Vui lòng điền đầy đủ thông tin';
+        return res.render('account.ejs', { errorRegister });
     }
 }
+
 
 let logout = (req, res) => {
     req.session.destroy((err) => {
@@ -81,6 +111,8 @@ let logout = (req, res) => {
     
 }
 module.exports = {
+    loggedin: loggedin,
+    isAuth: isAuth,
     showLogin: showLogin, 
     login: login,
     logout: logout,
