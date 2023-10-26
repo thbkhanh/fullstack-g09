@@ -18,4 +18,12 @@ frontend, backend, database, ....
 * Frontend:
   + src/views: includes .ejs files containing html and js code snippets
   + src/public: includes files .css , images, things that can be made public
+* Backend:
+  + src/controller:
+  + src/models
+* Server:
+  + server.js: config any thinks for server
+  + src/route: config router
+* Database:
+  + src/models:
 

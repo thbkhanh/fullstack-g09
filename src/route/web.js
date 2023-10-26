@@ -8,7 +8,7 @@ let initWebRoutes = (app)=>{
     //home page
     route.get('/', homeController.getHomePage);
     route.get('/home', auth.isAuth, (req, res) => {
-        homeController.getHomePage;
+        res.render('homePage');
     });
     // auth route
     route.get('/account', auth.isAuth, (req, res)=>{
