@@ -1,6 +1,7 @@
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 import account from "../models/user";
-import mailController from "./mailController"
+import mailController from "./mailController";
+import mail from "../config/mail";
 require ('dotenv').config();
 
 
@@ -79,12 +80,15 @@ let register = (req, res) => {
                         res.render('account.ejs', { errorRegister });
                     } else {
                         // Gửi email và sau đó chuyển hướng
-                        mailController.sendMail(ac.mail, "Verify Email", `<a href="${process.env.APP_URL}/verify?email=${ac.mail}&token=${ac.mail}"> Verify </a>`, (emailError) => {
-                            if (emailError) {
-                                // Xử lý lỗi gửi email ở đây
+                        mailController.sendMail(ac.mail, "Verify Email",  (err, otp) => {
+                            console.log("kt");
+                            console.log("OTP1" + otp );
+                            if (err) {
+                                // Xử lý lỗi gửi email
                                 const errorRegister = 'Lỗi gửi email xác minh';
                                 res.render('account.ejs', { errorRegister });
                             } else {
+                                // Kiểm tra mã otp nhập 
                                 res.redirect('/login');
                             }
                         });

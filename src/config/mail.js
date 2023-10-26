@@ -1,5 +1,6 @@
 require ('dotenv').config();
 
+
 module.exports = {
 
     MAILER: process.env.MAIL_MAILER,
@@ -11,3 +12,7 @@ module.exports = {
     FROM_ADDRESS: process.env.MAIL_FROM_ADDRESS,
     FROM_NAME: process.env.MAIL_FROM_NAME,
 }
+
+
+
+
