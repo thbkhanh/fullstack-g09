@@ -20,7 +20,7 @@ let createAccount =(ac, result) =>{
             result(err, null);
         }
         else{
-            sql.query("INSERT INTO USERS  VALUES (?, ?, '002', NULL)", [ac.new_username, pass], (err, message) =>{
+            sql.query("CALL CREATE_USER (?, ?, ?, @err)", [ac.new_username, pass, ac.mail], (err, message) =>{
                 if(err){
                     result(err, null);
                 }
