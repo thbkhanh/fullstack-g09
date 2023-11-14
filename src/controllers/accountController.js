@@ -89,6 +89,7 @@ let register = (req, res) => {
                                 res.render('account.ejs', { errorRegister });
                             } else {
                                 // Kiểm tra mã otp nhập 
+                                
                                 res.redirect('/login');
                             }
                         });

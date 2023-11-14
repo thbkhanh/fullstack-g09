@@ -6,13 +6,13 @@ let route=express.Router();
 let initWebRoutes = (app)=>{
 
     //home page
-    route.get('/', homeController.getHomePage);
+    route.get('/', homeController.getMainPage);
     route.get('/home', auth.isAuth, (req, res) => {
         res.render('homePage');
     });
     // auth route
     route.get('/account', auth.isAuth, (req, res)=>{
-        res.render('account')
+        res.render('account');
         //auth.showLogin;
     }) ;
     route.get('/login', auth.showLogin);
