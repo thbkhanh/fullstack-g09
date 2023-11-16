@@ -1,0 +1,120 @@
+header{
+    background-color: #2c3e50; /* Màu nền cho header */
+    color: #fff;
+    padding: 2px;
+    height: 70px;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    height: 65px;
+    width: 65px;
+}
+.logo img{
+    max-height: 100%;
+    width: auto;
+    padding: 1px;
+    padding-left: 25px;
+    transition: filter 0.3s;
+}
+.logo img:hover{
+    filter: grayscale(20%);
+}
+.search{
+    height: 30px;
+}
+.search input {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 25px; 
+    transition: background-color 0.3s; 
+}
+.search button {
+    padding: 10px;
+    background-color: #3498db;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 25px;
+    transition: background-color 0.3s; /* Hiệu ứng hover */
+}
+
+.search input:hover {
+    background-color: #34495e; 
+}
+.search button:hover {
+    background-color: #2980b9; 
+}
+.cart {
+    height: 65px;
+    width: 90px;
+    display: flex;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right:  30px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    
+}
+.cart i {
+    
+    font-size: 30px;
+    padding-top: 10px;
+}
+.cart:hover {
+    background-color: #2980b9;
+}
+
+.notification{
+    height: 65px;
+    width: 90px;
+    display: flex;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right:  30px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+   
+}
+.notification i {
+    padding-top: 10px;
+    font-size: 30px;
+}
+.notification:hover{
+    background-color: #2980b9;
+}
+.account {
+    height: 65px;
+    width: 90px;
+    display: flex;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right:  30px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    
+}
+.account i{
+    padding-top: 10px;
+    border-right: 10px;
+    font-size: 30px;
+}
+
+.account:hover{
+    background-color: #2980b9;
+}
+
+

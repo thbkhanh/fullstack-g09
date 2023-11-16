@@ -27,10 +27,11 @@ let isAuth = (req, res, next) => {
 
 let showLogin = (req, res)=>{
     return res.render('account.ejs');
-
 }
+
 let login = (req, res) => {
     const { username, password } = req.body;
+    console.log(username);
     
     if (username && password) {
         account.findUser(username, (err, user) => {
