@@ -36,24 +36,9 @@
     <main>
         <div class="formaccount">
             <div class="switch">
-                <div class="switchButton" id="switchToLogin">Đăng Nhập</div>
-                <div class="switchButton" id="switchToRegister">Đăng Ký</div>
+                <div class="switchButton"> <a href="/login" style="text-decoration: none;"> Đăng Nhập </a></div>
+                <div class="switchButton" style="background-color: rgb(212, 210, 210);"> <i>Đăng Ký</i></div>
             </div>
-         
-          <form id="loginForm" action="/login" method="post">
-            <h1>Đăng Nhập</h1>
-            <% if (typeof conflictError !== 'undefined') { %>
-                <p class="error"><%= conflictError %></p>
-            <% } %>
-            <label for="username">User Name:</label>
-            <input type="text" name="username" id="username" required>
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required>
-            <br>
-            <input type="submit" value="Đăng Nhập">
-          </form>
-      
           <form id="registerForm" action="/register" method="post">
             <h1>Đăng Ký</h1>
             <!-- Your register form content -->
@@ -69,34 +54,7 @@
             <input type="submit" value="Đăng Ký">
           </form>
         </div>
-        <% if (typeof conflictError == '0TP') { %>
-          <p class="error"><%= conflictError %></p>
-          <form action="register/verify" method="post">
-            <label for="otp">Mã OTP:</label>
-            <input type="text" id="otp" name="otp" required>
-            <br>
-            <button type="submit">Xác minh</button>
-          </form>
-          <% } %>
-      
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            const loginForm = document.getElementById("loginForm");
-            const registerForm = document.getElementById("registerForm");
-            const switchToRegister = document.getElementById("switchToRegister");
-            const switchToLogin = document.getElementById("switchToLogin");
-      
-            switchToRegister.addEventListener("click", function () {
-              loginForm.style.display = "none";
-              registerForm.style.display = "block";
-            });
-      
-            switchToLogin.addEventListener("click", function () {
-              loginForm.style.display = "block";
-              registerForm.style.display = "none";
-            });
-          });
-        </script>
+       
       </main>
       
     <footer>

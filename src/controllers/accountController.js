@@ -26,7 +26,10 @@ let isAuth = (req, res, next) => {
 
 
 let showLogin = (req, res)=>{
-    return res.render('account.ejs');
+    return res.render('login.ejs');
+}
+let showRegister = (req, res)=>{
+    return res.render('register.ejs');
 }
 
 let login = (req, res) => {
@@ -48,6 +51,7 @@ let login = (req, res) => {
                     } 
                     else {
                         // Mật khẩu không hợp lệ
+
                         
                         const conflictError= "Tài khoản hoặc mật khẩu không chính xác.";
                         res.render('account.ejs', {conflictError });
@@ -91,16 +95,17 @@ let register = (req, res) => {
                         // Gửi email và sau đó chuyển hướng
                         mailController.sendMail(ac.mail, "Verify Email",  (err, otp) => {
                             console.log("kt");
-                            console.log("OTP1" + otp );
+                            
                             if (err) {
                                 // Xử lý lỗi gửi email
                                 const errorRegister = 'Lỗi gửi email xác minh';
                                 res.render('account.ejs', { errorRegister });
                             } else {
                                 // Kiểm tra mã otp nhập 
-                                console.log(req.body);
-                                
-                                res.redirect('/login');
+                                console.log("OTP1" + otp );
+                                req.session.otp=otp;
+                                const errorRegister = 'OTP';
+                                res.render('mainPage.ejs', { errorRegister});
                             }
                         });
                     }
@@ -111,6 +116,21 @@ let register = (req, res) => {
         const errorRegister = 'Vui lòng điền đầy đủ thông tin';
         return res.render('account.ejs', { errorRegister });
     }
+}
+
+let verifyOTOP = (req, res) =>{
+    const OTP = req.body;
+    if(OTP){
+        if(OTP == req.session.otp){
+
+            res.render('auth/homePage.ejs');
+        }
+
+    } else{
+        
+    }
+
+
 }
 
 
@@ -129,7 +149,9 @@ module.exports = {
     loggedin: loggedin,
     isAuth: isAuth,
     showLogin: showLogin, 
+    showRegister: showRegister,
     login: login,
     logout: logout,
     register: register,
+    verifyOTOP: verifyOTOP,
 }

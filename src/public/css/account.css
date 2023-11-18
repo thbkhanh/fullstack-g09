@@ -63,9 +63,6 @@ input[type="submit"] {
   margin-bottom: 10px;
 }
 
-#registerForm {
-  display: none;
-}
 
 .switchButton {
   width: 120px;
@@ -73,7 +70,7 @@ input[type="submit"] {
   display: flex;
   align-items: center;
   justify-content: center; 
-
+  margin: 10px;
   cursor: pointer;
   color: #007bff;
   border-radius: 15px;
