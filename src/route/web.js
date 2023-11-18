@@ -10,14 +10,13 @@ let initWebRoutes = (app)=>{
     route.get('/account', auth.showLogin );
 
     route.get('/home', auth.isAuth, (req, res) => {
-        res.render('homePage');
+        res.render('auth/homePage');
     });
-    // auth route
+    route.post('/register', auth.register);
     
     route.post('/login', auth.login);
 
-    route.get('/register', auth.isAuth, auth.register);
-    route.post('/register', auth.register);
+   
 
     //.get('/logout', authMiddleware.loggedin, login.logout)
 

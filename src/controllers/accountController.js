@@ -65,21 +65,29 @@ let login = (req, res) => {
 }
 
 let register = (req, res) => {
-    const { new_username, password, mail } = req.body;
-    if (new_username && password && mail) {
+    const { new_username, new_password, mail } = req.body;
+    console.log(new_username, new_password, mail);
+    if (new_username && new_password && mail) {
+        console.log('K');
         account.findUser(new_username, (err, user) => { // kiểm tra user có tồn tại không 
             if (user) {
+                console.log('K1');
                 const errorRegister = 'Tài khoản đã tồn tại!';
                 return res.render('account.ejs', { errorRegister });
+                
             } 
             if(!user) {
-                const ac = { new_username, password, mail };
+                console.log('K2');
+                const ac = { new_username, new_password, mail };
                 account.createAccount(ac, (err, message) => {
                     if (err) {
+                        console.log('K3');
                         // Xử lý lỗi ở đây
-                        const errorRegister = 'Lỗi đăng ký';
+                        const errorRegister = message;
+                        console.log(message);
                         res.render('account.ejs', { errorRegister });
                     } else {
+                        console.log('K4');
                         // Gửi email và sau đó chuyển hướng
                         mailController.sendMail(ac.mail, "Verify Email",  (err, otp) => {
                             console.log("kt");
@@ -90,6 +98,7 @@ let register = (req, res) => {
                                 res.render('account.ejs', { errorRegister });
                             } else {
                                 // Kiểm tra mã otp nhập 
+                                console.log(req.body);
                                 
                                 res.redirect('/login');
                             }
