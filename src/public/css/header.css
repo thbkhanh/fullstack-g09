@@ -3,6 +3,7 @@ header{
     color: #fff;
     padding: 2px;
     height: 70px;
+    top: 0;
     width: auto;
     display: flex;
     justify-content: space-between;
@@ -118,3 +119,38 @@ header{
 }
 
 
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left,
+.footer-right {
+    width: 45%;
+}
+
+.footer-left h3,
+.footer-right h3 {
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+}
+
+.footer-left p,
+.footer-right a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-right a:hover {
+    text-decoration: underline;
+}
