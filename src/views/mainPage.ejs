@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/header_footer.css">
   <link rel="stylesheet" href="css/mainPage.css">
+  
   <title>TITI GROUP 09</title>
 </head>
 <body>
@@ -26,36 +27,44 @@
       <p style="font-size: 10px;">Thông Báo</p>
     </div>
       
-    <div class="account" onclick="<%= `document.getElementById('loginOptions').style.display = (document.getElementById('loginOptions').style.display === 'block') ? 'none' : 'block';` %>">
+    <div class="account" onclick="toggleLoginOptions()">
       <i class="bi bi-person-circle"></i>
       <p style="font-size: 10px;">Tài Khoản</p>
-  </div>
-  <div class="login-options" id="loginOptions" style="display: none;">
-      <button onclick="<%= `alert('Xử lý đăng nhập');` %>">Đăng Nhập</button>
-      <button onclick="<%= `alert('Xử lý đăng ký');` %>">Đăng Ký</button>
-  </div>
-        
+      <div class="login-options" id="loginOptions" style="display: none;">
+        <button onclick="redirectTo('/login')">Đăng Nhập</button>
+        <button onclick="redirectTo('/register')">Đăng Ký</button>
       </div>
+    </div>
+    
 
+    <script>
+      function toggleLoginOptions() {
+          var loginOptions = document.getElementById("loginOptions");
+          loginOptions.style.display = (loginOptions.style.display === "none") ? "block" : "none";
+      }
+      function redirectTo(path) {
+          window.location.href = path;
+      }
+    </script>
   </header>
 
-  <main style="min-height: 800px;">  
+  <main class="main-content">  
   </main>
 
   <footer>
     <div class="footer-container">
       <div class="footer-left">
           <h3>Contact Information</h3>
-          <p>Email: info@example.com</p>
-          <p>Phone: +1 234 567 890</p>
+          <p>Email: web.titi.group09@gamilcom</p>
+          <p>Phone: +84 13002 09 </p>
       </div>
       <div class="footer-right">
           <h3>Follow Us</h3>
-          <a href="#" target="_blank">Facebook</a>
-          <a href="#" target="_blank">Twitter</a>
-          <a href="#" target="_blank">Instagram</a>
+          <a href="#" target="_blank">Facebook: facebook.com/titi/group09</a>
+          <a href="#" target="_blank">Twitter: xxxxxxx</a>
+          <a href="#" target="_blank">Instagram: xxxxxx</a>
       </div>
-  </div>
+    </div>
 
   </footer>
 

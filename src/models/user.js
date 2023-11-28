@@ -1,6 +1,7 @@
 import sql from "./db";
 import bcrypt from "bcrypt"
 let findUser = (USERNAME, result) => {
+    console.log(USERNAME);
     sql.query("SELECT * FROM USERS WHERE USERNAME = ?", [USERNAME], (err, res) => {
         if (err) {
             result(err, null);

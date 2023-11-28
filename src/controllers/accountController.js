@@ -34,27 +34,27 @@ let showRegister = (req, res)=>{
 
 let login = (req, res) => {
     const { username, password } = req.body;
-    console.log(username);
+    
     
     if (username && password) {
         account.findUser(username, (err, user) => {
             if (!user) {
                 const conflictError = 'Tài khoản hoặc mật khẩu không chính xác';
-                return res.render('account.ejs', {conflictError });
+                return res.render('login.ejs', {conflictError });
             } 
             else {
                 bcrypt.compare(password, user.PASSWORDS, (err, result) => {
                     if (!err) {
                         //req.session.loggedin = true;
                         //req.session.user = user;
-                        return res.redirect('/'); // Điều hướng đến "/homePage   
+                        return res.redirect('/home'); // Điều hướng đến "/homePage   
                     } 
                     else {
                         // Mật khẩu không hợp lệ
 
                         
                         const conflictError= "Tài khoản hoặc mật khẩu không chính xác.";
-                        res.render('account.ejs', {conflictError });
+                        res.render('login.ejs', {conflictError });
                         
                     }
                 })

@@ -4,35 +4,50 @@
     <title>Trang Đăng Nhập và Đăng Ký</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/header_footer.css">
     <link rel="stylesheet" href="css/account.css">
 
     
 </head>
 <body>
-    <header>
+    <header> 
         <div class="logo">
             <img src="img/logo.png">
-        </div>
+        </div> 
         <div class="search">
             <input type="text" placeholder="Search for books...">
             <button type="submit">Search</button>
         </div>
-        <div class="cart">
-            <i class="bi bi-cart3"></i>
+        <div class="cart"> 
+            <i class="bi bi-cart3"> </i>
             <p style="font-size: 10px;">Giỏ Hàng</p>
         </div>
         <div class="notification">
-            <i class="bi bi-bell"></i>
+            <i class="bi bi-bell"> </i>
             <p style="font-size: 10px;">Thông Báo</p>
         </div>
-        <a href="/account" style="color: white; text-decoration: none;">
-            <div class="account">
+        
+        <div class="account" onclick="toggleLoginOptions()">
                 <i class="bi bi-person-circle"></i>
                 <p style="font-size: 10px;">Tài Khoản</p>
+            <div class="login-options" id="loginOptions" style="display: none;">
+                <button onclick="redirectTo('/login')">Đăng Nhập</button>
+                <button onclick="redirectTo('/register')">Đăng Ký</button>
             </div>
-        </a>
-    </header>
+        </div>
+    
+
+    <script>
+        function toggleLoginOptions() {
+            var loginOptions = document.getElementById("loginOptions");
+            loginOptions.style.display = (loginOptions.style.display === "none") ? "block" : "none";
+        }
+        function redirectTo(path) {
+            window.location.href = path;
+        }
+    </script>
+
+  </header>
     <main>
         <div class="formaccount">
             <div class="switch">
@@ -55,9 +70,22 @@
           </form> 
       </main>
       
-    <footer>
-        <!-- ... (nội dung footer) ... -->
-    </footer>
+      <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>Contact Information</h3>
+                <p>Email: web.titi.group09@gamilcom</p>
+                <p>Phone: +84 13002 09 </p>
+            </div>
+            <div class="footer-right">
+                <h3>Follow Us</h3>
+                <a href="#" target="_blank">Facebook: facebook.com/titi/group09</a>
+                <a href="#" target="_blank">Twitter: xxxxxxx</a>
+                <a href="#" target="_blank">Instagram: xxxxxx</a>
+            </div>
+        </div>
+    
+      </footer>
 </body>
 </html>
 

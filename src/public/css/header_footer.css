@@ -2,8 +2,9 @@ header{
     background-color: #2c3e50; /* Màu nền cho header */
     color: #fff;
     padding: 2px;
-    height: 70px;
+    height: 75px;
     top: 0;
+    position: relative;
     width: auto;
     display: flex;
     justify-content: space-between;
@@ -51,7 +52,7 @@ header{
     background-color: #2980b9; 
 }
 .cart {
-    height: 65px;
+    height: 75px;
     width: 90px;
     display: flex;
     cursor: pointer;
@@ -103,10 +104,33 @@ header{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    cursor: pointer;
     margin-right:  30px;
     border-radius: 10px;
     transition: background-color 0.3s;
     
+}
+
+.login-options {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 2px;
+    width: 140px;
+    height: 120px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+    border-radius: 15px;
+}
+.login-options button {
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    margin: 5px;
 }
 .account i{
     padding-top: 10px;
