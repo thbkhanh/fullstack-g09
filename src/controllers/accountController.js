@@ -31,6 +31,9 @@ let showLogin = (req, res)=>{
 let showRegister = (req, res)=>{
     return res.render('register.ejs');
 }
+let showVerifyOtp = (req, res) =>{
+    return res.render('verifyOtp.ejs');
+}
 
 let login = (req, res) => {
     const { username, password } = req.body;
@@ -85,27 +88,18 @@ let register = (req, res) => {
                 const ac = { new_username, new_password, mail };
                 account.createAccount(ac, (err, message) => {
                     if (err) {
-                        console.log('K3');
-                        // Xử lý lỗi ở đây
                         const errorRegister = message;
                         console.log(message);
-                        res.render('account.ejs', { errorRegister });
+                        res.render('register.ejs', { errorRegister });
                     } else {
-                        console.log('K4');
-                        // Gửi email và sau đó chuyển hướng
                         mailController.sendMail(ac.mail, "Verify Email",  (err, otp) => {
-                            console.log("kt");
-                            
                             if (err) {
                                 // Xử lý lỗi gửi email
                                 const errorRegister = 'Lỗi gửi email xác minh';
-                                res.render('account.ejs', { errorRegister });
+                                res.render('register.ejs', { errorRegister });
                             } else {
-                                // Kiểm tra mã otp nhập 
-                                console.log("OTP1" + otp );
                                 req.session.otp=otp;
-                                const errorRegister = 'OTP';
-                                res.render('mainPage.ejs', { errorRegister});
+                                res.render('verifyOtp.ejs');
                             }
                         });
                     }
@@ -114,25 +108,23 @@ let register = (req, res) => {
         });
     } else {
         const errorRegister = 'Vui lòng điền đầy đủ thông tin';
-        return res.render('account.ejs', { errorRegister });
+        return res.render('register.ejs', { errorRegister });
     }
 }
-
-let verifyOTOP = (req, res) =>{
+let verifyOtp = (req, res) =>{
     const OTP = req.body;
+    console.log(req.body);
     if(OTP){
+        console.log('OTP XÁC MMINH');
         if(OTP == req.session.otp){
-
             res.render('auth/homePage.ejs');
         }
 
     } else{
+        console.log('ADMIN');
         
     }
-
-
 }
-
 
 let logout = (req, res) => {
     req.session.destroy((err) => {
@@ -150,8 +142,10 @@ module.exports = {
     isAuth: isAuth,
     showLogin: showLogin, 
     showRegister: showRegister,
+    showVerifyOtp: showVerifyOtp,
     login: login,
     logout: logout,
     register: register,
-    verifyOTOP: verifyOTOP,
+    verifyOtp: verifyOtp,
+
 }

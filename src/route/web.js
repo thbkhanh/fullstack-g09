@@ -9,12 +9,17 @@ let initWebRoutes = (app)=>{
     route.get('/', homeController.getMainPage);
     route.get('/login', auth.showLogin );
     route.get('/register',auth.showRegister);
+    route.get('/verifyotp', auth.showVerifyOtp);
+    route.get('/auth/user', )
+
+
 
     route.get('/home', auth.isAuth, (req, res) => {
         res.render('auth/homePage');
     });
+
     route.post('/register', auth.register);
-    route.post('/register/otp' , auth.verifyOTOP);
+    route.post('/verifyotp' , auth.verifyOtp);
     route.post('/login', auth.login);
 
    
